@@ -1,0 +1,36 @@
+{
+  "name": "dashboard-server",
+  "version": "1.0.0",
+  "description": "Simple server for the github-project-dashboard",
+  "license": "MIT",
+  "main": "./lib/server.js",
+  "scripts": {
+    "transpile": "babel src --out-dir lib",
+    "lint": "standard | snazzy",
+    "start": "export LOCAL_DEV=true && nodemon"
+  },
+  "dependencies": {
+    "apollo-server-koa": "^1.3.2",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "dynamoose": "^0.8.6",
+    "graphql": "^0.12.3",
+    "graphql-tools": "^2.19.0",
+    "koa": "^2.4.1",
+    "koa-bodyparser": "^4.2.0",
+    "koa-path-router": "^2.0.1",
+    "serverless-http": "^1.5.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.11",
+    "snazzy": "^7.0.0",
+    "standard": "^10.0.3"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "lib/*"
+    ],
+    "exec": "yarn transpile && node ./lib/server.js"
+  }
+}
