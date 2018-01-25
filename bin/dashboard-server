@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# This is a small script that makes
+# dev a bit easier for the main project
+# to start this server for development
+
+REALPATH_SCRIPT="
+var fs = require('fs');
+var realpath = fs.realpathSync('${BASH_SOURCE[0]}');
+console.log(realpath);
+"
+
+SCRIPT_PATH=$(node -e "${REALPATH_SCRIPT}")
+PROJECT_BIN_DIR=$(dirname ${SCRIPT_PATH})
+PROJECT_DIR=$(dirname ${PROJECT_BIN_DIR})
+
+# move into project dir temporarily
+pushd ${PROJECT_DIR}
+
+echo "Starting dynamodb..."
+docker-compose up &
+
+cleanup () {
+  echo "Tearing down dynamodb..."
+  docker-compose down
+  popd
+}
+
+trap cleanup EXIT
+
+# lolz HACK: wait a little for dynamodb to be ready
+sleep 2
+
+echo "Transpiling..."
+npm run transpile
+
+echo "Starting up server..."
+LOCAL_DEV=true node ./lib/server.js

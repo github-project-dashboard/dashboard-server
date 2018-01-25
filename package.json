@@ -4,6 +4,9 @@
   "description": "Simple server for the github-project-dashboard",
   "license": "MIT",
   "main": "./lib/server.js",
+  "bin": {
+    "dashboard-server": "./bin/dashboard-server"
+  },
   "scripts": {
     "transpile": "babel src --out-dir lib",
     "lint": "standard | snazzy",
