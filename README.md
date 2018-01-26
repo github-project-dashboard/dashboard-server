@@ -4,7 +4,14 @@ A simple backend for the `github-dashboard-project`.
 
 ## Development
 
-First install dependencies:
+### Required Dependencies
+
+- [node.js](https://nodejs.org) version 6.9+
+- [yarn](https://yarnpkg.com)
+- [docker](https://docker.com) and
+  [docker-compose](https://docs.docker.com/compose/)
+
+First install npm dependencies:
 
 ```sh
 yarn install

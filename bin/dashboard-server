@@ -18,6 +18,7 @@ PROJECT_DIR=$(dirname ${PROJECT_BIN_DIR})
 pushd ${PROJECT_DIR}
 
 echo "Starting dynamodb..."
+docker-compose pull
 docker-compose up &
 
 cleanup () {
